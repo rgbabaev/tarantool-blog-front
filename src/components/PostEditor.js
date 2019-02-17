@@ -57,7 +57,7 @@ class PostEditor extends React.Component {
         <div className={Classes.DIALOG_BODY}>
           <FormGroup
             label='Title'
-            helperText='Maximum 120 symbols'
+            labelInfo='(maximum 120 symbols)'
             intent='primary'
           >
             <H2>
