@@ -7,7 +7,8 @@ import {
   Intent,
   FormGroup
 } from '@blueprintjs/core';
-import Input from './Input';
+import Input from '../Input';
+import './styles.css';
 
 class PostEditor extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class PostEditor extends React.Component {
 
     return (
       <Dialog
+        className='PostEditor'
         title={postId ? `Editing post #${postId}` : 'New post'}
         icon={postId ? 'edit' : 'insert'}
         isOpen={isOpen}
