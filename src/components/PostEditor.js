@@ -5,9 +5,9 @@ import {
   H2,
   Classes,
   Intent,
-  FormGroup,
-  EditableText
+  FormGroup
 } from '@blueprintjs/core';
+import Input from './Input';
 
 class PostEditor extends React.Component {
   constructor(props) {
@@ -18,12 +18,14 @@ class PostEditor extends React.Component {
 
       this.state = {
         title,
-        text
+        text,
+        showErrors: false
       };
     } else {
       this.state = {
         title: '',
-        text: ''
+        text: '',
+        showErrors: false
       };
     }
   }
@@ -32,12 +34,18 @@ class PostEditor extends React.Component {
   handleTextChange = text => this.setState({ text });
 
   handleSave = () => {
-    this.props.onSave(this.state);
-    this.props.onClose();
+    const { title, text } = this.state;
+    if (title.length && text.length) {
+      this.props.onSave(this.state);
+      this.props.onClose();
+    } else {
+      this.setState({ showErrors: true });
+    }
   }
 
   render() {
     const { isOpen, onClose, postId } = this.props;
+    const { title, text, showErrors } = this.state;
 
     return (
       <Dialog
@@ -50,23 +58,28 @@ class PostEditor extends React.Component {
           <FormGroup
             label='Title'
             helperText='Maximum 120 symbols'
+            intent='primary'
           >
             <H2>
-              <EditableText
-                value={this.state.title}
+              <Input
+                value={title}
                 onChange={this.handleTitleChange}
                 placeholder='My favourite spider'
                 maxLength={120}
+                showErrors={showErrors}
+                required
               />
             </H2>
           </FormGroup>
           <FormGroup label='Post text'>
-            <EditableText
-              value={this.state.text}
+            <Input
+              value={text}
               onChange={this.handleTextChange}
-              placeholder='Very interesting and long story'
+              placeholder='Very interesting and long story should be here'
               multiline
               minLines={3}
+              showErrors={showErrors}
+              required
             />
           </FormGroup>
         </div>
