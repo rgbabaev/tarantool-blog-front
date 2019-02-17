@@ -1,0 +1,16 @@
+.Posts {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.Posts__post {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.Posts__btnWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
